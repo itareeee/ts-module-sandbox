@@ -1,10 +1,17 @@
-/// <referrence path="../controllers/login/login-controller.ts">
-/// <referrence path="../controllers/login/login-side-controller.ts">
+/// <reference path="../controllers/login/login-controller.ts" />
+/// <reference path="../directives/common/common-directive.ts" />
+/// <reference path="../controllers/login/login-side-controller.ts" />
 
-var ctrl = controllers.login;
 
-ctrl.doSomething();
+module routing.login {
+  import ctrl = controllers.login;
 
-var loginCtrl = new ctrl.LoginController('kitaly');
-loginCtrl.echoMyString();
+  export function run(){
+    ctrl.doSomething();
 
+    var loginCtrl = new ctrl.LoginController('kitaly');
+    loginCtrl.echoMyString();
+  }
+}
+
+routing.login.run();
