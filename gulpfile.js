@@ -26,7 +26,15 @@ var tsProject = typescript.createProject({
   noExternalResolve: true
 });
 
-gulp.task('ts', function(){
+
+gulp.task('ts:copy', function(){
+  gulp
+    .src('src/scripts/**/*.ts')
+    .pipe(gulp.dest('build/typescripts/'))
+  ;
+});
+
+gulp.task('ts:compile', function(){
 
   var tsResult = gulp
     .src('src/scripts/**/*.ts')
@@ -58,13 +66,13 @@ gulp.task('ts', function(){
   
 //  return streamqueue(concatTargetList[0], concatTargetList[1])
   return merge(concatTargetList)
-      //.pipe(uglify({
-      //  mangle: false
-      //}))
+      .pipe(uglify({
+        mangle: false
+      }))
       .pipe(debug({titile: 'merged'}))
       .pipe(rev())
       .pipe(gulp.dest('build/'))
-      .pipe(sourcemaps.write('.'))
+      .pipe(sourcemaps.write('.', {includeContent: false, sourceRoot: './typescripts'}))
       .pipe(gulp.dest('build/'))
       .pipe(rev.manifest())
       .pipe(gulp.dest('build/'))
