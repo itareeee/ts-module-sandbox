@@ -66,9 +66,9 @@ gulp.task('ts:compile', function(){
   
 //  return streamqueue(concatTargetList[0], concatTargetList[1])
   return merge(concatTargetList)
-      .pipe(uglify({
-        mangle: false
-      }))
+      //.pipe(uglify({
+      //  mangle: false
+      //}))
       .pipe(debug({titile: 'merged'}))
       .pipe(rev())
       .pipe(gulp.dest('build/'))
